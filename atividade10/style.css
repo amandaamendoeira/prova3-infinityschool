@@ -1,0 +1,27 @@
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 40px;
+}
+.concluida {
+    text-decoration: line-through;
+    color: green;
+}
+.tarefa {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+.tarefa span {
+  flex: 1;
+  cursor: pointer;
+}
+.remover {
+  margin-left: 10px;
+  background-color: red;
+  color: white;
+  border: none;
+  padding: 4px 8px;
+  cursor: pointer;
+}
