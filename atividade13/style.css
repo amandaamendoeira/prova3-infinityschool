@@ -1,0 +1,37 @@
+body {
+    font-family: Arial, sans-serif;
+    max-width: 480px;
+    margin: 2rem auto;
+    padding: 1rem;
+  }
+  
+  .campo {
+    margin-bottom: 1rem;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 0.3rem;
+    font-weight: bold;
+  }
+  
+  input {
+    width: 100%;
+    padding: 0.4rem;
+    font-size: 1rem;
+  }
+  
+  .erro {
+    color: red;
+    font-size: 0.9rem;
+    margin-top: 0.2rem;
+    min-height: 1.2em;
+  }
+  
+  #mensagem-sucesso {
+    margin-top: 1rem;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: green;
+  }
+  

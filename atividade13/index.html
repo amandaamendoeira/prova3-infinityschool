@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Cadastro de Usuários</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <h1>Cadastro de Usuários</h1>
+  <form id="formCadastro" novalidate>
+    <div class="campo">
+      <label for="nome">Nome:</label>
+      <input type="text" id="nome" name="nome" />
+      <div class="erro" id="erro-nome"></div>
+    </div>
+
+    <div class="campo">
+      <label for="usuario">Usuário:</label>
+      <input type="text" id="usuario" name="usuario" />
+      <div class="erro" id="erro-usuario"></div>
+    </div>
+
+    <div class="campo">
+      <label for="senha">Senha:</label>
+      <input type="password" id="senha" name="senha" />
+      <div class="erro" id="erro-senha"></div>
+    </div>
+
+    <div class="campo">
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" />
+      <div class="erro" id="erro-email"></div>
+    </div>
+
+    <div class="campo">
+      <label for="idade">Idade / Data de Nascimento:</label>
+      <input type="date" id="idade" name="idade" />
+      <div class="erro" id="erro-idade"></div>
+    </div>
+
+    <button type="submit">Cadastrar</button>
+  </form>
+
+  <div id="mensagem-sucesso"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
