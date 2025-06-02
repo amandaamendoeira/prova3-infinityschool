@@ -1,59 +1,56 @@
-const inputTitulo = document.getElementById('tituloNota');
-const btnAdicionar = document.getElementById('btnAdicionar');
-const listaNotas = document.getElementById('listaNotas');
+document.addEventListener('DOMContentLoaded', () => {
+  const inputNota = document.getElementById('tituloNota');
+  const btnAdicionar = document.getElementById('btnAdicionar');
+  const listaNotas = document.getElementById('listaNotas');
+  const btnLimparTudo = document.getElementById('btnLimparTudo');
 
-function carregarNotas() {
-  listaNotas.innerHTML = '';
+  let notas = JSON.parse(localStorage.getItem('notas')) || [];
 
-  const notas = JSON.parse(localStorage.getItem('notas')) || [];
+  function salvarNotas() {
+    localStorage.setItem('notas', JSON.stringify(notas));
+  }
 
-  notas.forEach(nota => {
-    const li = document.createElement('li');
-    li.textContent = nota.titulo;
+  function exibirNotas() {
+    listaNotas.innerHTML = '';
 
-    const btnRemover = document.createElement('button');
-    btnRemover.textContent = 'Remover';
-    btnRemover.classList.add('btn-remove');
+    notas.forEach((nota, index) => {
+      const li = document.createElement('li');
+      li.textContent = nota.titulo;
 
-    btnRemover.addEventListener('click', () => {
-      removerNota(nota.titulo);
+      const btnRemover = document.createElement('button');
+      btnRemover.textContent = 'Remover';
+      btnRemover.addEventListener('click', () => {
+        notas.splice(index, 1);
+        salvarNotas();
+        exibirNotas();
+      });
+
+      li.appendChild(btnRemover);
+      listaNotas.appendChild(li);
     });
+  }
 
-    li.appendChild(btnRemover);
-    listaNotas.appendChild(li);
+  btnAdicionar.addEventListener('click', () => {
+    const titulo = inputNota.value.trim();
+
+    if (titulo === '') {
+      alert('Digite um título para a nota!');
+      return;
+    }
+
+    notas.push({ titulo });
+    salvarNotas();
+    exibirNotas();
+    inputNota.value = '';
   });
-}
 
-function adicionarNota(titulo) {
-  if (!titulo) {
-    alert('Por favor, insira um título para a nota.');
-    return;
-  }
+  btnLimparTudo.addEventListener('click', () => {
+    if (confirm('Tem certeza que deseja apagar todas as notas?')) {
+      notas = [];
+      localStorage.removeItem('notas');
+      exibirNotas();
+    }
+  });
 
-  let notas = JSON.parse(localStorage.getItem('notas')) || [];
-
-  if (notas.some(nota => nota.titulo.toLowerCase() === titulo.toLowerCase())) {
-    alert('Já existe uma nota com esse título. Use outro título.');
-    return;
-  }
-
-  notas.push({ titulo });
-  localStorage.setItem('notas', JSON.stringify(notas));
-  carregarNotas();
-}
-
-function removerNota(titulo) {
-  let notas = JSON.parse(localStorage.getItem('notas')) || [];
-  notas = notas.filter(nota => nota.titulo !== titulo);
-  localStorage.setItem('notas', JSON.stringify(notas));
-  carregarNotas();
-}
-
-btnAdicionar.addEventListener('click', () => {
-  const titulo = inputTitulo.value.trim();
-  adicionarNota(titulo);
-  inputTitulo.value = '';
-  inputTitulo.focus();
+  exibirNotas();
 });
-
-carregarNotas();
